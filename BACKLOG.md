@@ -2,9 +2,14 @@
 
 This document outlines the backlog for implementing best practice Datadog monitoring and dashboards using Pulumi for our team's 30 applications.
 
-## Prerequisite: Tagging Strategy (Option A)
-- [ ] **Action:** Ensure all 30 applications are emitting the `team:<your-team-name>` tag.
-- **Details:** This needs to be configured at the deployment level (e.g., via the `DD_TAGS` environment variable). By tagging at the source, we can write global monitors and dashboards in Pulumi that automatically scope to all apps owned by the team without hardcoding service names.
+## Prerequisites
+- [ ] **Action 1: Tagging Strategy (Option A)**
+  - Ensure all 30 applications are emitting the `team:<your-team-name>` tag.
+  - *Details:* This needs to be configured at the deployment level (e.g., via the `DD_TAGS` environment variable). By tagging at the source, we can write global monitors and dashboards in Pulumi that automatically scope to all apps owned by the team without hardcoding service names.
+- [ ] **Action 2: Serverless Integration Onboarding**
+  - Connect AWS Lambda functions to Datadog (e.g., via the Datadog Forwarder or Datadog Extension).
+  - Connect GCP Cloud Functions to Datadog.
+  - Ensure serverless functions also emit the `team` tag.
 
 ---
 
@@ -19,6 +24,18 @@ This document outlines the backlog for implementing best practice Datadog monito
   - Alert on unexpected drops in request volume or throughput.
 - [ ] **4. Set Up Alert Routing**
   - Configure the Pulumi monitors to route alerts to our team's specific notification channels (e.g., Slack, PagerDuty).
+
+## Phase 1.5: Tech-Stack Specific Monitors
+*Goal: Address specific reliability concerns based on the runtime or platform.*
+
+- [ ] **Java Applications**
+  - Implement monitors for JVM Heap Memory usage and Garbage Collection (GC) pauses.
+- [ ] **Node.js Applications**
+  - Implement monitors for Event Loop lag and V8 heap statistics.
+- [ ] **Frontend Applications**
+  - Implement Real User Monitoring (RUM) alerts for Core Web Vitals (LCP, FID, CLS) and frontend JavaScript error rates.
+- [ ] **Serverless (Lambda & GCP Functions)**
+  - Implement monitors for function timeouts, excessive cold starts, and invocation errors.
 
 ## Phase 2: Visualization & Dashboards
 *Goal: Provide immediate visibility into the health of all team applications.*
