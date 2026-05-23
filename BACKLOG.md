@@ -2,6 +2,8 @@
 
 This document outlines the backlog for implementing best practice Datadog monitoring and dashboards using Pulumi for our team's 30 applications.
 
+> **Note:** All tasks in this backlog must be executed in accordance with the principles defined in [DESIGN.md](./DESIGN.md) (e.g., using Multi-Alerts, Actionable Alert Messages, and adhering to Unified Service Tagging).
+
 ## Prerequisites
 - [ ] **Action 1: Tagging Strategy (Option A)**
   - Ensure all 30 applications are emitting the `team:<your-team-name>` tag.
